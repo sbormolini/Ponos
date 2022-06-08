@@ -2,13 +2,13 @@
 
 <PageTitle>Todo</PageTitle>
 
-<h1>Todo (@todos.Count(todo => !todo.Completed))</h1>
+<h1>Todo (@todos.Count(todo => !todo.IsComplete))</h1>
 
 <ul>
     @foreach (var todo in todos)
     {
         <li>
-            <input type="checkbox" @bind="todo.Completed" />
+            <input type="checkbox" @bind="todo.IsComplete" />
             <input @bind="todo.Name" />
         </li>
     }
