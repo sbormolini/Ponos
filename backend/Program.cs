@@ -32,6 +32,12 @@ public class Program
             app.UseSwaggerUI();
         }
 
+        // cors
+        app.UseCors(policy =>
+            policy.WithOrigins("http://localhost:5166", "https://localhost:7265")
+                  .AllowAnyMethod()
+                  .WithHeaders());
+
         app.UseHttpsRedirection();
 
         app.UseAuthorization();
@@ -51,21 +57,22 @@ public class Program
         string containerName, 
         string key)
     {
-        // for local dev
-        CosmosClientOptions cosmosClientOptions = new CosmosClientOptions()
-        {
-            HttpClientFactory = () =>
-            {
-                HttpMessageHandler httpMessageHandler = new HttpClientHandler()
-                {
-                    ServerCertificateCustomValidationCallback = (req, cert, chain, errors) => true
-                };
-                return new HttpClient(httpMessageHandler);
-            },
-            ConnectionMode = ConnectionMode.Gateway
-        };
+        //// for local dev
+        //CosmosClientOptions cosmosClientOptions = new CosmosClientOptions()
+        //{
+        //    HttpClientFactory = () =>
+        //    {
+        //        HttpMessageHandler httpMessageHandler = new HttpClientHandler()
+        //        {
+        //            ServerCertificateCustomValidationCallback = (req, cert, chain, errors) => true
+        //        };
+        //        return new HttpClient(httpMessageHandler);
+        //    },
+        //    ConnectionMode = ConnectionMode.Gateway
+        //};
 
-        CosmosClient client = new(accountEndpoint, key, cosmosClientOptions);
+        //CosmosClient client = new(accountEndpoint, key, cosmosClientOptions);
+        CosmosClient client = new(accountEndpoint, key);
         CosmosDbService cosmosDbService = new(client, databaseName, containerName);
         DatabaseResponse database = await client.CreateDatabaseIfNotExistsAsync(databaseName);
         await database.Database.CreateContainerIfNotExistsAsync(containerName, "/id");
