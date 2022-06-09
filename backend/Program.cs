@@ -36,7 +36,7 @@ public class Program
         app.UseCors(policy =>
             policy.WithOrigins("http://localhost:5166", "https://localhost:7265")
                   .AllowAnyMethod()
-                  .WithHeaders());
+                  .AllowAnyHeader());
 
         app.UseHttpsRedirection();
 
