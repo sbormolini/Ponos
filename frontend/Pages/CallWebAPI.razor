@@ -14,6 +14,7 @@ else
             <tr>
                 <th class="text-center">Complete</th>
                 <th>Name</th>
+                <th>Description</th>
                 <th></th>
             </tr>
         </thead>
@@ -45,6 +46,7 @@ else
                         }
                     </td>
                     <td>@item.Name</td>
+                    <td>@item.Description</td>
                     <td class="text-center">
                         <button class="btn btn-warning" 
                                 @onclick="@(() => EditItem(item.Id))">
@@ -62,6 +64,9 @@ else
                 <td>
                     <input @bind="newItemName" placeholder="New Todo Item" />
                 </td>
+                <td>
+                    <input @bind="newItemDescription" placeholder="" />
+                </td>
                 <td class="text-center">
                     <button class="btn btn-success" @onclick="AddItem">Add</button>
                 </td>
@@ -76,11 +81,11 @@ else
     private TodoItem editItem = new();
     private string editRowStyle = "none";
     private string? newItemName;
+    private string? newItemDescription;
 
     protected override async Task OnInitializedAsync() => await GetTodoItems();
 
-    private async Task GetTodoItems() => 
-        todoItems = await Http.GetFromJsonAsync<TodoItem[]>(ServiceEndpoint);
+    private async Task GetTodoItems() => todoItems = await Http.GetFromJsonAsync<TodoItem[]>(ServiceEndpoint);
 
     private void EditItem(string id)
     {
@@ -93,9 +98,18 @@ else
 
     private async Task AddItem()
     {
-        var addItem = new TodoItem { Name = newItemName, IsComplete = false };
+        var addItem = new TodoItem { 
+            Id = Guid.NewGuid().ToString(),
+            Name = newItemName,
+            Description = newItemDescription,
+            IsComplete = false 
+        };
         await Http.PostAsJsonAsync(ServiceEndpoint, addItem);
+
+        // clear
         newItemName = string.Empty;
+        newItemDescription = string.Empty;
+        
         await GetTodoItems();
         editRowStyle = "none";
     }
