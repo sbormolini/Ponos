@@ -33,8 +33,9 @@ public class Program
         }
 
         // cors
+        //policy.WithOrigins("http://localhost:5166", "https://localhost:7265")
         app.UseCors(policy =>
-            policy.WithOrigins("http://localhost:5166", "https://localhost:7265")
+            policy.AllowAnyOrigin()
                   .AllowAnyMethod()
                   .AllowAnyHeader());
 

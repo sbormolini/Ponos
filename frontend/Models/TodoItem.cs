@@ -1,3 +1,6 @@
+﻿namespace Bos.Todo.Web.Models;
+
+// todo: same model between api and frontend > shared lib?
 public class TodoItem
 {
     public string? Id { get; set; }
