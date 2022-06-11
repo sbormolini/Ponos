@@ -1,0 +1,26 @@
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:5000"
+    networks:
+      - front-tier
+      - back-tier
+    configs:
+      - httpd-config
+
+  backend:
+    build: ./backend
+    ports:
+      - "80:8080"
+    networks:
+      - back-tier
+
+configs:
+  httpd-config:
+    external: true
+
+networks:
+  # The presence of these objects is sufficient to define them
+  front-tier: {}
+  back-tier: {}
