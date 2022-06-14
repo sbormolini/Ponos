@@ -3,6 +3,7 @@ version: '3'  # specify docker-compose version
 services:
   frontend:
     build: ./frontend
+    restart: on-failure
     ports:
       - "8088:80"
     networks:
@@ -13,6 +14,7 @@ services:
 
   backend:
     build: ./backend
+    restart: on-failure
     ports:
       - "5000:80"
     networks:
