@@ -37,10 +37,5 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseStaticFiles(new StaticFileOptions{
-    // Serve openapi.yaml file
-    ServeUnknownFileTypes = true,
-});
-
 app.MapControllers();
 app.Run();
