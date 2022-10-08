@@ -18,4 +18,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\shared\Ponos.Shared\Ponos.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

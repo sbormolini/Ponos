@@ -1,4 +1,4 @@
-namespace Ponos.Api.Models;
+namespace Ponos.Shared.Models;
 
 public class TodoItem
 {

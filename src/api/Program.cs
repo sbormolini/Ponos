@@ -1,7 +1,7 @@
 using Azure.Identity;
 using Microsoft.ApplicationInsights.AspNetCore.Extensions;
 using Microsoft.Azure.Cosmos;
-using Ponos.Api;
+using Ponos.Api.Data;
 
 var credential = new DefaultAzureCredential();
 var builder = WebApplication.CreateBuilder(args);
