@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Ponos.Api.Models;
+using Ponos.Api.Data;
+using Ponos.Shared.Models;
 
 namespace Ponos.Api.Controllers;
 
@@ -7,9 +8,9 @@ namespace Ponos.Api.Controllers;
 [Route("/lists")]
 public class ListsController : ControllerBase
 {
-    private readonly ListsRepository _repository;
+    private readonly IListsRepository _repository;
 
-    public ListsController(ListsRepository repository)
+    public ListsController(IListsRepository repository)
     {
         _repository = repository;
     }

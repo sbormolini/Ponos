@@ -1,10 +1,10 @@
 using Microsoft.Azure.Cosmos;
 using Microsoft.Azure.Cosmos.Linq;
-using Ponos.Api.Models; 
+using Ponos.Shared.Models;
 
-namespace Ponos.Api;
+namespace Ponos.Api.Data;
 
-public class ListsRepository
+public class ListsRepository : IListsRepository
 {
     private readonly Container _listsCollection;
     private readonly Container _itemsCollection;
