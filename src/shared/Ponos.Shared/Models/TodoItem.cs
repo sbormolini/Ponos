@@ -1,6 +1,6 @@
 namespace Ponos.Shared.Models;
 
-public class TodoItem
+public sealed class TodoItem
 {
     public TodoItem(string listId, string name)
     {

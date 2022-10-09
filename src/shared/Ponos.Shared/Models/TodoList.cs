@@ -1,11 +1,8 @@
 namespace Ponos.Shared.Models;
 
-public class TodoList
+public sealed class TodoList
 {
-    public TodoList(string name)
-    {
-        Name = name;
-    }
+    public TodoList(string name) => Name = name;
 
     public string? Id { get; set; }
     public string Name { get; set; }
